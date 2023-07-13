@@ -7,22 +7,22 @@ public class CameraMove : MonoBehaviour
     private GameObject m_Player = null;
     private Vector3 m_TargetPos = Vector3.zero;
 
-    //Ä«¸Ş¶ó À§Ä¡ °è»ê¿ë º¯¼ö
-    private float m_PosX = 0.0f;    //¸¶¿ì½º ÁÂ¿ì Á¶ÀÛ°ª 
-    private float m_PosY = 0.0f;    //¸¶¿ì½º »óÇÏ Á¶ÀÛ°ª
-    private float xSpeed = 5.0f;    //¸¶¿ì½º ÁÂ¿ì È¸Àü¿¡ ´ëÇÑ Ä«¸Ş¶ó È¸Àü ½ºÇÇµå
-    private float ySpeed = 2.4f;    //¸¶¿ì½º »óÇÏ È¸Àü¿¡ ´ëÇÑ Ä«¸Ş¶ó È¸Àü ½ºÇÇµå
-    private float yMinLimit = -7.0f;    //À§ ¾Æ·¡ °¢µµ Á¦ÇÑ
-    private float yMaxLimit = 80.0f;    //À§ ¾Æ·¡ °¢µµ Á¦ÇÑ
-    private float zoomSpeed = 1.0f; //ÁÜÀÎ,ÁÜ¾Æ¿ô ½ºÇÇµå
-    private float maxDist = 50.0f;  //¸¶¿ì½º ÁÜ ¾Æ¿ô ÃÖ´ë °Å¸®
-    private float minDist = 3.0f;  //¸¶¿ì½º ÁÜ ÀÎ ÃÖ¼Ò °Å¸®
+    //ì¹´ë©”ë¼ ìœ„ì¹˜ ê³„ì‚°ìš© ë³€ìˆ˜
+    private float m_PosX = 0.0f;        //ë§ˆìš°ìŠ¤ ì¢Œìš° ì¡°ì‘ê°’ 
+    private float m_PosY = 0.0f;        //ë§ˆìš°ìŠ¤ ìƒí•˜ ì¡°ì‘ê°’
+    private float xSpeed = 5.0f;        //ë§ˆìš°ìŠ¤ ì¢Œìš° íšŒì „ì— ëŒ€í•œ ì¹´ë©”ë¼ íšŒì „ ìŠ¤í”¼ë“œ
+    private float ySpeed = 2.4f;        //ë§ˆìš°ìŠ¤ ìƒí•˜ íšŒì „ì— ëŒ€í•œ ì¹´ë©”ë¼ íšŒì „ ìŠ¤í”¼ë“œ
+    private float yMinLimit = -7.0f;    //ìœ„ ì•„ë˜ ê°ë„ ì œí•œ
+    private float yMaxLimit = 80.0f;    //ìœ„ ì•„ë˜ ê°ë„ ì œí•œ
+    private float zoomSpeed = 1.0f;     //ì¤Œì¸,ì¤Œì•„ì›ƒ ìŠ¤í”¼ë“œ
+    private float maxDist = 50.0f;      //ë§ˆìš°ìŠ¤ ì¤Œ ì•„ì›ƒ ìµœëŒ€ ê±°ë¦¬
+    private float minDist = 3.0f;       //ë§ˆìš°ìŠ¤ ì¤Œ ì¸ ìµœì†Œ ê±°ë¦¬
                            
 
-    //ÁÖÀÎ°ø ±âÁØ Ä«¸Ş¶ó ÁÂÇ¥ ÃÊ±â°ª
-    private float m_DefaltPosX = 0.0f;  //Æò¸é È¸Àü°¢µµ
-    private float m_DefaltPosY = 27.0f; //³ôÀÌ È¸Àü°¢µµ
-    private float m_DefaltDist = 6f;  //ÁÖÀÎ°ø~Ä«¸Ş¶ó °Å¸®
+    //í”Œë ˆì´ì–´ ê¸°ì¤€ ì¹´ë©”ë¼ ì¢Œí‘œ ì´ˆê¸°ê°’
+    private float m_DefaltPosX = 0.0f;  //í‰ë©´ íšŒì „ê°ë„
+    private float m_DefaltPosY = 27.0f; //ë†’ì´ íšŒì „ê°ë„
+    private float m_DefaltDist = 6f;    //í”Œë ˆì´ì–´ì™€ ì¹´ë©”ë¼ ì‚¬ì´ì˜ ê±°ë¦¬
 
     private Quaternion a_BuffRot;
     private Vector3 a_BasicPos = Vector3.zero;
@@ -36,9 +36,9 @@ public class CameraMove : MonoBehaviour
         m_TargetPos = m_Player.transform.position;
         m_TargetPos.y = m_TargetPos.y + 1.4f;
 
-        //Ä«¸Ş¶ó À§Ä¡ °è»ê °ø½Ä
-        m_PosX = m_DefaltPosX-180;  //Æò¸é ±âÁØÈ¸Àü°¢µµ
-        m_PosY = m_DefaltPosY;  //³ôÀÌ ±âÁØÈ¸Àü°¢µµ
+        //ì¹´ë©”ë¼ ìœ„ì¹˜ ê³„ì‚° ê³µì‹
+        m_PosX = m_DefaltPosX-180;  //í‰ë©´ ê¸°ì¤€íšŒì „ê°ë„
+        m_PosY = m_DefaltPosY;      //ë†’ì´ ê¸°ì¤€íšŒì „ê°ë„
         distance = m_DefaltDist;
 
         a_BuffRot = Quaternion.Euler(m_PosY, m_PosX, 0);
@@ -48,7 +48,7 @@ public class CameraMove : MonoBehaviour
 
         a_BuffPos = a_BuffRot * a_BasicPos + m_TargetPos;
 
-        transform.position = a_BuffPos; //Ä«¸Ş¶óÀÇ ÁÂÇ¥°è ±âÁØ À§Ä¡
+        transform.position = a_BuffPos; //ì¹´ë©”ë¼ì˜ ì¢Œí‘œê³„ ê¸°ì¤€ ìœ„ì¹˜
 
         transform.LookAt(m_TargetPos);
     }
@@ -58,25 +58,25 @@ public class CameraMove : MonoBehaviour
         if (m_Player != null)
         {
             m_TargetPos = m_Player.transform.position;
-            m_TargetPos.y = m_TargetPos.y + 2f;   //Ä«¸Ş¶ó ³ôÀÌ¸¦ ÇÃ·¹ÀÌ¾îº¸´Ù 1.4f³ô°Ô
+            m_TargetPos.y = m_TargetPos.y + 2f;    //ì¹´ë©”ë¼ ë†’ì´ë¥¼ í”Œë ˆì´ì–´ë³´ë‹¤ 1.4fë†’ê²Œ
         }
 
-        if (Input.GetMouseButton(1))//¸¶¿ì½º ¿ìÃø ¹öÆ°À» ´©¸£°í ÀÖ´Â µ¿¾È
+        if (Input.GetMouseButton(1))    //ë§ˆìš°ìŠ¤ ìš°ì¸¡ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ìˆëŠ” ë™ì•ˆ
         {
-            m_PosX += Input.GetAxis("Mouse X") * xSpeed;    //¸¶¿ì½º¸¦ ÁÂ¿ì·Î ¿òÁ÷¿´À» ¶§ÀÇ °ª
-            m_PosY -= Input.GetAxis("Mouse Y") * ySpeed;    //¸¶¿ì½º¸¦ À§¾Æ·¡·Î ¿òÁ÷¿´À» ¶§ÀÇ °ª
+            m_PosX += Input.GetAxis("Mouse X") * xSpeed;    //ë§ˆìš°ìŠ¤ë¥¼ ì¢Œìš°ë¡œ ì›€ì§ì˜€ì„ ë•Œì˜ ê°’
+            m_PosY -= Input.GetAxis("Mouse Y") * ySpeed;    //ë§ˆìš°ìŠ¤ë¥¼ ìœ„ì•„ë˜ë¡œ ì›€ì§ì˜€ì„ ë•Œì˜ ê°’
 
             m_PosY = ClampAngle(m_PosY, yMinLimit, yMaxLimit);
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && distance > minDist)
         {
-            distance -= zoomSpeed;  //ÁÜ ÀÎ
+            distance -= zoomSpeed;  //ì¤Œ ì¸
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && distance < maxDist)
         {
-            distance += zoomSpeed;  //ÁÜ ¾Æ¿ô
+            distance += zoomSpeed;  //ì¤Œ ì•„ì›ƒ
         }
 
         a_BuffRot = Quaternion.Euler(m_PosY, m_PosX, 0);
@@ -86,7 +86,7 @@ public class CameraMove : MonoBehaviour
 
         a_BuffPos = a_BuffRot * a_BasicPos + m_TargetPos;
 
-        transform.position = a_BuffPos;    //zoom Ä«¸Ş¶óÀÇ Á÷°¢ÁÂÇ¥°è ±âÁØÀÇ À§Ä¡
+        transform.position = a_BuffPos;    //zoom ì¹´ë©”ë¼ì˜ ì§ê°ì¢Œí‘œê³„ ê¸°ì¤€ì˜ ìœ„ì¹˜
 
         transform.LookAt(m_TargetPos);
     }
@@ -96,7 +96,7 @@ public class CameraMove : MonoBehaviour
         if (angle < -360)   //-360->0
             angle += 360;
         if (angle > 360)    //360->0
-            angle -= 360;   //¿øÀ» ÀÌ·çµµ·Ï
+            angle -= 360;   //ì›ì„ ì´ë£¨ë„ë¡
 
         return Mathf.Clamp(angle, min, max);
     }
