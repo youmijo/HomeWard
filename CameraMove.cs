@@ -14,10 +14,9 @@ public class CameraMove : MonoBehaviour
     private float ySpeed = 2.4f;        //마우스 상하 회전에 대한 카메라 회전 스피드
     private float yMinLimit = -7.0f;    //위 아래 각도 제한
     private float yMaxLimit = 80.0f;    //위 아래 각도 제한
-    private float zoomSpeed = 1.0f;     //줌인,줌아웃 스피드
+    private float zoomSpeed = 1.0f;     //줌인, 줌아웃 스피드
     private float maxDist = 50.0f;      //마우스 줌 아웃 최대 거리
-    private float minDist = 3.0f;       //마우스 줌 인 최소 거리
-                           
+    private float minDist = 3.0f;       //마우스 줌 인 최소 거리         
 
     //플레이어 기준 카메라 좌표 초기값
     private float m_DefaltPosX = 0.0f;  //평면 회전각도
@@ -96,9 +95,8 @@ public class CameraMove : MonoBehaviour
         if (angle < -360)   //-360->0
             angle += 360;
         if (angle > 360)    //360->0
-            angle -= 360;   //원을 이루도록
+            angle -= 360;
 
         return Mathf.Clamp(angle, min, max);
     }
-
 }
