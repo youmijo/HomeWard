@@ -21,11 +21,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         talkPanel.SetActive(false);
-        //menuSet.SetActive(false);
 
         isAction = false;
         isEsc = false;
-
     }
 
     public void Action(GameObject scanObj)
@@ -66,8 +64,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //menuSet.SetActive(isEsc);
-
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuSet.activeSelf)
@@ -75,7 +71,6 @@ public class GameManager : MonoBehaviour
                 menuSet.SetActive(false);
                 //isEsc = false;
             }
-
             else
             {
                 menuSet.SetActive(true);
@@ -88,7 +83,6 @@ public class GameManager : MonoBehaviour
             //menuSet.SetActive(false);
             isEsc = true;
         }
-
         else
         {
             //menuSet.SetActive(true);
@@ -99,7 +93,6 @@ public class GameManager : MonoBehaviour
             isStart = true;
         else
             isStart = false;
-
     }
 
     public void GameExit()
