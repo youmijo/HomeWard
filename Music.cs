@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class Music : MonoBehaviour
 {
-
     public Slider backVolume;
     public AudioSource audio;
 
     private float backVol = 1f;
 
-    // Start is called before the first frame update
     private void Start()
     {
         backVol = PlayerPrefs.GetFloat("backvol", 1f);
@@ -19,7 +17,6 @@ public class Music : MonoBehaviour
         audio.volume = backVolume.value;
     }
 
-    // Update is called once per frame
     void Update()
     {
         SoundSlider();
