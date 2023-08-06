@@ -9,12 +9,12 @@ public class CharMove : MonoBehaviour
     float m_MoveVelocity = 5.0f;
 
     float h = 0, v = 0;
-    Vector3 MoveNextStep;   //º¸Æø °è»êÀ» À§ÇÑ º¯¼ö
+    Vector3 MoveNextStep; //ë³´í­ ê³„ì‚°ì„ ìœ„í•œ ë³€ìˆ˜
     Vector3 MoveHStep;
     Vector3 MoveVStep;
 
     float a_CalcRotY = 1.0f;
-    float rotSpeed = 100.0f;    //ÃÊ´ç È¸Àü¼Óµµ
+    float rotSpeed = 100.0f; //ì´ˆë‹¹ íšŒì „ì†ë„
 
     void Start()
     {
@@ -26,25 +26,21 @@ public class CharMove : MonoBehaviour
         KeyBDMove();
     }
 
-    void KeyBDMove()    //Å°º¸µå ÀÌµ¿
+    void KeyBDMove()
     {
-        //°¡°¨¼Ó ¾øÀÌ ÀÌµ¿ Ã³¸®
-        h = Input.GetAxisRaw("Horizontal"); //È­»ìÇ¥Å° ÁÂ¿ì¸¦ ´­·¯ÁÖ¸é -1,0,1 »çÀÌ°ªÀ» ¸®ÅÏÇÑ´Ù.
-        v = Input.GetAxisRaw("Vertical");   //È­»ìÇ¥Å° À§ ¾Æ·¡¸¦ ´­·¯ÁÖ¸é -1,0,1»çÀÌ°ªÀ» ¸®ÅÏÇÑ´Ù.
+        //ê°€ê°ì† ì—†ì´ ì´ë™ ì²˜ë¦¬
+        h = Input.GetAxisRaw("Horizontal"); //í™”ì‚´í‘œí‚¤ ì¢Œìš°ë¥¼ ëˆŒëŸ¬ì£¼ë©´ -1,0,1ì‚¬ì´ê°’ì„ ë¦¬í„´í•œë‹¤.
+        v = Input.GetAxisRaw("Vertical");   //í™”ì‚´í‘œí‚¤ ìœ„ì•„ë˜ë¥¼ ëˆŒëŸ¬ì£¼ë©´ -1,0,1ì‚¬ì´ê°’ì„ ë¦¬í„´í•œë‹¤.
 
-        //if (v < 0)
-           // v = 0;
-
-
-        if (h != 0 || v != 0)  //Å°º¸µå ÀÌµ¿Ã³¸®
+        if (h != 0 || v != 0) //í‚¤ë³´ë“œ ì´ë™ì²˜ë¦¬
         {
             a_CalcRotY = transform.eulerAngles.y;
             a_CalcRotY = a_CalcRotY + (h * rotSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0, a_CalcRotY, 0);  //È¸Àü
+            transform.eulerAngles = new Vector3(0, a_CalcRotY, 0);  //íšŒì „
 
             MoveVStep = transform.forward * v;
             MoveNextStep = MoveVStep;
-            MoveNextStep = MoveNextStep.normalized * m_MoveVelocity * Time.deltaTime;   //ÀüÁø,ÈÄÁø
+            MoveNextStep = MoveNextStep.normalized * m_MoveVelocity * Time.deltaTime;
 
             transform.position += MoveNextStep;
         }
