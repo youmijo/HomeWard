@@ -7,7 +7,6 @@ public class Raycast : MonoBehaviour
     GameObject scanObject;
     public GameManager manager;
 
-    // 한 프레임마다 업데이트 호출
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
